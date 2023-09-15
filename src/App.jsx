@@ -14,7 +14,9 @@ import {
 } from "firebase/database";
 
 import { connect, useDispatch, useSelector } from "react-redux";
-import { addUser, removeUser, setUser } from "./redux/actions";
+import { addUser, removeUser, setUser, setUserStream } from "./redux/actions";
+import { MeetingScreen } from "./components/MeetingScreen/MeetingScreen";
+import { MainScreen } from "./components/mainScreen/MainScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,11 +24,16 @@ function App() {
   const participants = useSelector((store) => store.participants);
 
   useEffect(() => {
-    // connectedInfo.on("value",snap=>{
-    // })
+    navigator.mediaDevices
+      .getUserMedia({ audio: true, video: true })
+      .then((mediaStream) => {
+        // mediaStream.getVideoTracks()[0].enabled = false;
+        // console.log(mediaStream);
+        dispatch(setUserStream(mediaStream));
+      });
 
-    const participants_ref = child(dbref, "participants");
     onValue(connectedInfo, (snap) => {
+      const participants_ref = child(dbref, "participants");
       if (snap.val()) {
         let default_prefrence = {
           audio: true,
@@ -51,8 +58,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const participants_ref = child(dbref, "participants");
     if (user) {
+      const participants_ref = child(dbref, "participants");
       onChildAdded(participants_ref, (snap) => {
         const { userName, preference } = snap.val();
         dispatch(
@@ -72,7 +79,9 @@ function App() {
 
   return (
     <>
-      {JSON.stringify(user)}-{JSON.stringify(participants)}
+      {/* <MainScreen /> */}
+      <MeetingScreen />
+      {/* {JSON.stringify(user)}-{JSON.stringify(participants)} */}
     </>
   );
 }

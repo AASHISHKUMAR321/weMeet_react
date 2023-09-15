@@ -7,11 +7,9 @@ const config = {
   databaseURL: "https://wemeet-a801f-default-rtdb.firebaseio.com",
 };
 
-export const userName = prompt("enter your  user-name");
+export const userName = prompt("enter your user-name");
 const app = initializeApp(config);
-getDatabase(app);
-
-let db = getDatabase();
+let db = getDatabase(app);
 
 let dbref = ref(db);
 
@@ -33,8 +31,8 @@ if (roomId) {
   // dbref = dbref.child(roomId);
 } else {
   // console.log(dbref);
-  let key = push();
-  console.log(key.key);
+  let key = push(dbref);
+  // console.log(key);
   dbref = window.history.replaceState(null, "meet", "?id=" + key.key);
 }
 
