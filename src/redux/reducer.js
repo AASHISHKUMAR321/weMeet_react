@@ -32,9 +32,7 @@ export const reducer = (state = init_state, action) => {
     case SET_USERSTREAM: {
       let { payload } = action;
 
-      let x = { ...state, ...payload };
-
-      return x;
+      return { ...state, ...payload };
     }
 
     case SET_USER: {
@@ -51,7 +49,7 @@ export const reducer = (state = init_state, action) => {
       if (currentUserId == participantID) {
         payload.participant[participantID].currentUser = true;
       }
-      console.log("stream", state.mainStream);
+      console.log("stream", state.mainStrem);
       if (state.mainStrem && currentUserId != participantID) {
         // console.log("mainstream working");
         addConnection(state.currentUser, payload.participant, state.mainStrem);

@@ -27,10 +27,12 @@ function App() {
     navigator.mediaDevices
       .getUserMedia({ audio: true, video: true })
       .then((mediaStream) => {
-        // mediaStream.getVideoTracks()[0].enabled = false;
+        mediaStream.getVideoTracks()[0].enabled = true;
         // console.log(mediaStream);
+        console.log(mediaStream);
         dispatch(setUserStream(mediaStream));
-      });
+      })
+      .catch((err) => console.log(err));
 
     onValue(connectedInfo, (snap) => {
       const participants_ref = child(dbref, "participants");
@@ -79,8 +81,8 @@ function App() {
 
   return (
     <>
-      {/* <MainScreen /> */}
-      <MeetingScreen />
+      <MainScreen />
+      {/* <MeetingScreen /> */}
       {/* {JSON.stringify(user)}-{JSON.stringify(participants)} */}
     </>
   );

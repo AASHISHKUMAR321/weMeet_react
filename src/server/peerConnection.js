@@ -30,6 +30,7 @@ export const createOffer = async (peerConnection, createdId, receiverId) => {
 };
 
 export const intitListeners = (currentUserId) => {
+  console.log("init listernes", currentUserId);
   const recever_ref = child(participants_ref, currentUserId);
 
   let offer_ref = child(recever_ref, "offers");
@@ -40,7 +41,7 @@ export const intitListeners = (currentUserId) => {
       const createdId = data?.offerPayload.userId;
       const peerConnection =
         Store.getState().participants[createdId].peerConnection;
-
+      console.log("peer", peerConnection);
       await peerConnection.setRemoteDescription(
         new RTCSessionDescription(data?.offerPayload)
       );

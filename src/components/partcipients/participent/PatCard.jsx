@@ -9,18 +9,45 @@ export const PatCard = (e) => {
   const userStream = useSelector((store) => store.mainStrem);
   useEffect(() => {
     if (e.peerConnection) {
-      e.peerConnection.ontrack = (event) => {
+      e.peerConnection.addEventListener("track", (event) => {
+        console.log("Got remote track:", event.streams[0]);
         event.streams[0].getTracks().forEach((track) => {
+          console.log("Add a track to the remoteStream:", track);
           remote_strem.addTrack(track);
         });
         video_ref.current.srcObject = remote_strem;
-      };
+      });
+      // e.peerConnection.ontrack = (event) => {
+      //   event.streams[0].getTracks().forEach((track) => {
+      //     remote_strem.addTrack(track);
+      //   });
+      //   video_ref.current.srcObject = remote_strem;
+      // };
+      // console.log("useeffect1", e.peerConnection);
+      // e.peerConnection.ontrack = (event) => {
+      //   console.log("stream", event.streams);
+      //   event.streams[0].getTracks().forEach((track) => {
+      //     remote_strem.addTrack(track);
+      //   });
+      //   console.log("remote", remote_strem);
+      // video_ref.current.srcObject = remote_strem;
+
+      //   video_ref.current.srcObject = remote_strem;
+      // };
+
+      // e.peerConnection.addEventListener("track", (event) => {
+      //   event.streams[0].getTracks().forEach((track) => {
+      //     remoteStrem.addTrack(track);
+      //   });
+
+      // });
     }
   }, [e.peerConnection]);
 
   useEffect(() => {
     if (userStream && e.currentUser) {
       video_ref.current.srcObject = userStream;
+      video_ref.current.muted = true;
     }
   }, [e.currentUser, userStream]);
   const toggleMute = () => {
