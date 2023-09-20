@@ -12,6 +12,8 @@ import ClockTimeDisplay from "./UniqueTimeDisplay";
 import CircularClock from "./UniqueTimeDisplay";
 import RectangularClock from "./UniqueTimeDisplay";
 import SimpleClock from "./UniqueTimeDisplay";
+import { Link } from "react-router-dom";
+import { key } from "../../server/firebase";
 
 export const MainScreen = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -71,11 +73,10 @@ export const MainScreen = () => {
               {showOptions && (
                 <div className="absolute top-0 left-0 w-80 p-2 bg-white border border-gray-300 rounded shadow">
                   <ul className=" list-inside text-lg list-none p-3 flex flex-col gap-3 cursor-pointer">
-                    <li className="flex gap-5">
-                      {" "}
+                    <Link className="flex gap-5" to={`/${key.key}`}>
                       <AiOutlinePlus className="text-2xl" />
                       Start an instant meeting
-                    </li>
+                    </Link>
                     <li className="flex gap-5">
                       <MdInsertLink className="text-2xl" /> Create a meeting for
                       later

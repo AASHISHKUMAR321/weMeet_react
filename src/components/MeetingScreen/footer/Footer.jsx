@@ -18,16 +18,6 @@ export default function Footer() {
       {/* Bottom navigation */}
       <div className="flex justify-center items-center bg-gray-200 py-4">
         <button
-          onClick={() => setvideo(!video)}
-          className="mr-4   px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          {video ? (
-            <FaVideoSlash className="text-2xl" />
-          ) : (
-            <FaVideo className="text-2xl" />
-          )}
-        </button>
-        <button
           onClick={() => setAudio(!audio)}
           className="mr-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
         >
@@ -35,6 +25,16 @@ export default function Footer() {
             <AiOutlineAudioMuted className="text-2xl" />
           ) : (
             <AiOutlineAudio className="text-2xl" />
+          )}
+        </button>
+        <button
+          onClick={() => setvideo(!video)}
+          className="mr-4   px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          {video ? (
+            <FaVideoSlash className="text-2xl" />
+          ) : (
+            <FaVideo className="text-2xl" />
           )}
         </button>
         <button

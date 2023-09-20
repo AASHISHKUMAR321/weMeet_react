@@ -1,5 +1,5 @@
 import { child, onChildAdded, push, set } from "firebase/database";
-import dbref from "./firebase";
+import { dbref } from "./firebase";
 import { Store } from "../redux/store";
 
 const participants_ref = child(dbref, "participants");
