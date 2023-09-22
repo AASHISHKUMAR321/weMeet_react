@@ -3,7 +3,11 @@ import { SiGooglemeet } from "react-icons/si";
 import { MdVideoCall } from "react-icons/md";
 import { FaKeyboard } from "react-icons/fa";
 import { MdInsertLink } from "react-icons/md";
-import { AiOutlinePlus, AiOutlineSetting } from "react-icons/ai";
+import {
+  AiOutlinePlus,
+  AiOutlineSetting,
+  AiOutlineCloseCircle,
+} from "react-icons/ai";
 import { BsCalendarPlus } from "react-icons/bs";
 
 import { FaUserCircle } from "react-icons/fa";
@@ -17,6 +21,7 @@ import { key } from "../../server/firebase";
 
 export const MainScreen = () => {
   const [showOptions, setShowOptions] = useState(false);
+  const [settings, setSettings] = useState(false);
 
   const handleButtonClick = () => {
     setShowOptions(!showOptions);
@@ -33,7 +38,7 @@ export const MainScreen = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full ">
       <header className="bg-blue-500 p-4 flex justify-between items-center">
         {/* Left side logo */}
         <div className="flex items-center">
@@ -46,7 +51,10 @@ export const MainScreen = () => {
           {/* <p>{currentDateTime}</p> */}
 
           <FaUserCircle className="text-3xl text-white" />
-          <AiOutlineSetting className="text-3xl text-white" />
+          <AiOutlineSetting
+            className="text-3xl text-white "
+            onClick={() => setSettings(!settings)}
+          />
         </div>
       </header>
 
@@ -65,6 +73,7 @@ export const MainScreen = () => {
           <div>
             <SimpleClock />
           </div>
+
           <div className="gap-4 flex ">
             <div onClick={handleButtonClick} className="relative">
               <button className="bg-blue-600 text-white p-3  rounded-md flex ">
@@ -123,6 +132,54 @@ export const MainScreen = () => {
             want to meet with
           </p>
         </div>
+      </div>
+
+      <div>
+        {settings && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            {/* Overlay */}
+            <div
+              className="fixed inset-0 bg-black opacity-50"
+              onClick={() => setSettings(!settings)} // Close settings when clicking the overlay
+            ></div>
+
+            {/* Settings container */}
+            <div className="bg-white p-4 rounded-lg shadow-md  z-50 w-[50%] h-[50%] relative">
+              {/* <div className="flex justify-evenly gap-96 text-3xl ">
+                <div>Settings</div>
+                <div>
+                  <button
+                    onClick={() => setSettings(!setSettings)}
+                    className=" text-blue-600 py-2 px-4 rounded-md float-right"
+                  >
+                    <AiOutlineCloseCircle className="text-5xl" />
+                  </button>
+                </div>
+              </div> */}
+
+              <div className="flex justify-evenly gap-40 h-full">
+                <div>
+                  <div className="text-3xl">Settings</div>
+                  <div>Audio</div>
+                  <div>Video</div>
+                  <div>General</div>
+                </div>
+                <div className="absolute h-[97%] border-2 border-red-500"></div>
+                <div>
+                  <div className="w-full border-2  border-red-500 ">
+                    <button
+                      onClick={() => setSettings(!setSettings)}
+                      className=" text-blue-600 py-2 px-4 rounded-md float-right"
+                    >
+                      <AiOutlineCloseCircle className="text-5xl" />
+                    </button>
+                  </div>
+                  <div>content</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
