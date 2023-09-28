@@ -11,11 +11,7 @@ import {
 import { BsCalendarPlus } from "react-icons/bs";
 
 import { FaUserCircle } from "react-icons/fa";
-import UniqueTimeDisplay from "./UniqueTimeDisplay";
-import ClockTimeDisplay from "./UniqueTimeDisplay";
-import CircularClock from "./UniqueTimeDisplay";
-import RectangularClock from "./UniqueTimeDisplay";
-import SimpleClock from "./UniqueTimeDisplay";
+
 import { Link } from "react-router-dom";
 import { key } from "../../server/firebase";
 
@@ -39,45 +35,39 @@ export const MainScreen = () => {
 
   return (
     <div className="w-full h-full ">
-      <header className="bg-blue-500 p-4 flex justify-between items-center">
-        {/* Left side logo */}
+      <div className=" sm:w-full w-full bg-blue-500 p-4 flex justify-between items-center min-w-full-screen ">
         <div className="flex items-center">
           <SiGooglemeet className="text-3xl text-white" />
           <h1 className="text-white text-lg font-semibold ml-2"> WeMeet</h1>
         </div>
 
-        {/* Right side date, time, and profile */}
         <div className="text-white text-xl flex gap-5 ">
-          {/* <p>{currentDateTime}</p> */}
-
           <FaUserCircle className="text-3xl text-white" />
           <AiOutlineSetting
             className="text-3xl text-white "
             onClick={() => setSettings(!settings)}
           />
         </div>
-      </header>
+      </div>
 
-      <div className="w-full min-h-[90vh]  flex ">
+      <div className="sm:flex-row w-full min-h-[90vh]  flex flex-col  ">
         <div className="m-auto flex gap-10 flex-col justify-start ">
-          <div className=" text-start w-[400px] font-medium text-[#3c4043] ">
-            <h1 className="text-2xl  ">
+          <div className="sm:w-[800px] text-start w-[600px] font-medium text-[#3c4043] m-auto ">
+            <h1 className="text-6xl  ">
               Premium video meetings. <br />
               Now free for everyone
             </h1>
-            <p className="text-m">
+            <p className="text-lg">
               We have built app for meetings , we Meet, to make it free video &
               audio call available for all.
             </p>
           </div>
-          <div>
-            <SimpleClock />
-          </div>
+          <div>{/* <SimpleClock /> */}</div>
 
-          <div className="gap-4 flex ">
-            <div onClick={handleButtonClick} className="relative">
-              <button className="bg-blue-600 text-white p-3  rounded-md flex ">
-                <MdVideoCall className="text-2xl " /> new meet
+          <div className=" gap-4 flex  w-[80%] m-auto ">
+            <div onClick={handleButtonClick} className="relative text-sm ">
+              <button className="bg-blue-600 text-white p-3  rounded-md flex  ">
+                <MdVideoCall className=" text-4xl " /> new meet
               </button>
               {showOptions && (
                 <div className="absolute top-0 left-0 w-80 p-2 bg-white border border-gray-300 rounded shadow">
@@ -106,7 +96,7 @@ export const MainScreen = () => {
               placeholder="Enter a code or link"
             /> */}
 
-            <div className=" border rounded-lg flex border-blue-400 ">
+            <div className=" border rounded-lg flex border-blue-400  ">
               <div className=" w-[20%]  inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-2xl ">
                 <FaKeyboard className="text-3xl text-blue-400" />
               </div>
@@ -120,7 +110,7 @@ export const MainScreen = () => {
             </div>
           </div>
         </div>
-        <div className="m-auto rounded-lg w-[400px] h-[300px] ">
+        <div className="m-auto rounded-lg w-[400px] h-[300px]  ">
           <img
             src="src/assets/5218235.jpg"
             alt=""
@@ -144,37 +134,40 @@ export const MainScreen = () => {
             ></div>
 
             {/* Settings container */}
-            <div className="bg-white p-4 rounded-lg shadow-md  z-50 w-[50%] h-[50%] relative">
+            <div className="bg-white p-4 rounded-lg shadow-md  z-50 w-[40%] h-[50%] relative">
               {/* <div className="flex justify-evenly gap-96 text-3xl ">
                 <div>Settings</div>
                 <div>
                   <button
                     onClick={() => setSettings(!setSettings)}
                     className=" text-blue-600 py-2 px-4 rounded-md float-right"
+
                   >
                     <AiOutlineCloseCircle className="text-5xl" />
                   </button>
                 </div>
               </div> */}
 
-              <div className="flex justify-evenly gap-40 h-full">
-                <div>
-                  <div className="text-3xl">Settings</div>
-                  <div>Audio</div>
-                  <div>Video</div>
-                  <div>General</div>
-                </div>
-                <div className="absolute h-[97%] border-2 border-red-500"></div>
-                <div>
-                  <div className="w-full border-2  border-red-500 ">
-                    <button
-                      onClick={() => setSettings(!setSettings)}
-                      className=" text-blue-600 py-2 px-4 rounded-md float-right"
-                    >
-                      <AiOutlineCloseCircle className="text-5xl" />
-                    </button>
+              <div className="flex justify-between h-full">
+                <div className="text-2xl">
+                  <div className="text-2xl mb-7">Settings</div>
+                  <div className="ml-[10%]">
+                    <div>Audio</div>
+                    <div>Video</div>
+                    <div>General</div>
                   </div>
-                  <div>content</div>
+                </div>
+                <div className=" h-[97%] border-2 border-black-500"></div>
+                <div className="min-w-[40%] flex flex-col border-2 border-black-500 ">
+                  <div className="flex justify-end ">
+                    <AiOutlineCloseCircle
+                      className="text-4xl text-blue-600 "
+                      onClick={() => setSettings(!setSettings)}
+                    />
+                  </div>
+                  <div className=" border-2 border-red-300 p-4">
+                    <input type="text" />
+                  </div>
                 </div>
               </div>
             </div>

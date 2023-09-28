@@ -93,12 +93,9 @@ function App() {
   }, []);
 
   return (
-    <>
-      {/* <MainScreen /> */}
+    <div className="w-full h-full">
       <MainRoute />
-      {/* <MeetingScreen /> */}
-      {/* {JSON.stringify(user)}-{JSON.stringify(participants)} */}
-    </>
+    </div>
   );
 }
 

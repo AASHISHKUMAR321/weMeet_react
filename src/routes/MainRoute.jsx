@@ -4,11 +4,12 @@ import { MainScreen } from "../components/mainScreen/MainScreen";
 import { MeetingScreen } from "../components/MeetingScreen/MeetingScreen";
 import { Singin } from "../components/auth/Singin";
 import { Private } from "../components/auth/Private";
+import { Main } from "../components/mainScreen/Main";
 
 export const MainRoute = () => {
   return (
     <Routes>
-      <Route path="/" element={<MainScreen />} />
+      <Route path="/" element={<Main />} />
       <Route
         path="/:id"
         element={
