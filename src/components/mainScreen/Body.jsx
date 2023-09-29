@@ -101,7 +101,7 @@ export const Body = ({ clickHander }) => {
       </div>
 
       <div className="flex-1">
-        <div className="m-auto">
+        <div className="m-auto w-[70%]">
           <img src="src/assets/5218235.jpg" alt="" className="rounded-3xl" />
           <h1 className="text-center text-2xl mt-5">
             Get a link you can share
