@@ -20,11 +20,18 @@ export const Header = () => {
   const [allDevice, setAllDevice] = useState({ audio: null, video: null });
 
   const settingsStateHandler = (name) => {
-    setSettingsState((prev) => {
-      (prev.audio = false), (prev.video = false), (prev.general = false);
-    });
+    // setSettingsState((prev) => {
+    //   (prev.audio = false), (prev.video = false), (prev.general = false);
+    // });
 
-    setSettingsState({ ...settingsState, [name]: true });
+    // setSettingsState({ ...settingsState, [name]: true });
+    setSettingsState((prevState) => ({
+      ...prevState,
+      audio: false,
+      video: false,
+      general: false,
+      [name]: true,
+    }));
   };
 
   async function getConnectedDevices(type) {
@@ -49,8 +56,8 @@ export const Header = () => {
   console.log(allDevice);
   return (
     <div className="  bg-blue-500 p-4 flex justify-between text-white">
-      <div className="flex gap-1">
-        <SiGooglemeet className="text-2xl" /> wemeet
+      <div className="flex gap-1 text-2xl">
+        <SiGooglemeet className="text-4xl" /> wemeet
       </div>
       <div className="flex text-3xl gap-10 text-white relative">
         <AiOutlineSetting
