@@ -9,6 +9,8 @@ import { FaUser, FaVideo } from "react-icons/fa";
 import { SiGooglemeet } from "react-icons/si";
 import { TbDeviceRemote } from "react-icons/tb";
 import { Select } from "../Select";
+import { signOut } from "firebase/auth";
+import { auth } from "../../server/firebase";
 export const Header = () => {
   const [userOptions, setUserOptions] = useState(false);
   const [settingsOptions, setSettingsOptions] = useState(false);
@@ -18,6 +20,7 @@ export const Header = () => {
     general: false,
   });
   const [allDevice, setAllDevice] = useState({ audio: null, video: null });
+  // const [permission,setPermission] = useState()
 
   const settingsStateHandler = (name) => {
     // setSettingsState((prev) => {
@@ -35,6 +38,10 @@ export const Header = () => {
   };
 
   async function getConnectedDevices(type) {
+    // navigator.mediaDevicesss
+    //   .getUserMedia({ video: true, audio: true })
+    //   .then((stream) => console.log(stream))
+    //   .catch((err) => console.log(err));
     const devices = await navigator.mediaDevices.enumerateDevices();
     return devices.filter((device) => device.kind === type);
   }
@@ -52,7 +59,7 @@ export const Header = () => {
   };
   useEffect(() => {
     deviceHandler();
-  }, []);
+  }, [settingsOptions]);
   console.log(allDevice);
   return (
     <div className="  bg-blue-500 p-4 flex justify-between text-white">
@@ -62,7 +69,14 @@ export const Header = () => {
       <div className="flex text-3xl gap-10 text-white relative">
         <AiOutlineSetting
           onClick={() => {
-            setSettingsOptions(!settingsOptions);
+            if ((allDevice.audio.input[0].labal = " ")) {
+              // setSettingsOptions(false);
+
+              navigator.mediaDevices
+                .getUserMedia({ audio: true, video: true })
+                .then((stream) => setSettingsOptions(true));
+            }
+            // setSettingsOptions(!settingsOptions);
           }}
         />
         <FaUser
@@ -73,7 +87,13 @@ export const Header = () => {
         {userOptions ? (
           <div className="absolute cursor-pointer  border-red-400 mt-11 w-[100%]  bg-blue-400 text-2xl justify-start  flex flex-col ">
             <div className="mt-2">Profile</div>
-            <div>Log Out</div>
+            <div
+              onClick={() => {
+                signOut(auth).then((d) => alert("signOut successfully"));
+              }}
+            >
+              Log Out
+            </div>
           </div>
         ) : (
           ""
@@ -83,7 +103,9 @@ export const Header = () => {
             {/* Overlay */}
             <div
               className="fixed inset-0 bg-black opacity-50"
-              onClick={() => setSettingsOptions(!settingsOptions)} // Close settings when clicking the overlay
+              onClick={() => {
+                setSettingsOptions(!settingsOptions);
+              }} // Close settings when clicking the overlay
             ></div>
 
             <div
@@ -143,7 +165,16 @@ export const Header = () => {
               <div className=" cursor-pointer ">
                 <div className="float-right">
                   <AiOutlineClose
-                    onClick={() => setSettingsOptions(!settingsOptions)}
+                    onClick={() => {
+                      setAllDevice({ audio: null, video: null });
+                      setSettingsOptions(!settingsOptions);
+                      setSettingsState((prevState) => ({
+                        ...prevState,
+                        audio: true,
+                        video: false,
+                        general: false,
+                      }));
+                    }}
                     className="cursor-pointer"
                   />
                 </div>

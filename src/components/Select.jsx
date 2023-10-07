@@ -2,12 +2,12 @@ import React from "react";
 
 export const Select = ({ title, data }) => {
   return (
-    <div className="flex  flex-col gap-5 mt-2 text-sm ">
+    <div className="flex  flex-col gap-5 mt-2 text-xl ">
       <p>{title}</p>
       <select
         name=""
         id=""
-        className="w-full p-2 border-2 border-blue-400 rounded-md overflow-hidden whitespace-nowrap text-ellipsis "
+        className="w-full p-3 border-2 border-blue-400 rounded-md overflow-hidden whitespace-nowrap text-ellipsis "
       >
         {data
           ? data.map((e) => {
