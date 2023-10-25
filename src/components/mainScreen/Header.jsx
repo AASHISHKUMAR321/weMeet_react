@@ -11,6 +11,14 @@ import { TbDeviceRemote } from "react-icons/tb";
 import { Select } from "../Select";
 import { signOut } from "firebase/auth";
 import { auth } from "../../server/firebase";
+import { MenuDivider } from "./Menu";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
 export const Header = () => {
   const [userOptions, setUserOptions] = useState(false);
   const [settingsOptions, setSettingsOptions] = useState(false);
@@ -79,12 +87,8 @@ export const Header = () => {
             // setSettingsOptions(!settingsOptions);
           }}
         />
-        <FaUser
-          onClick={() => {
-            setUserOptions(!userOptions);
-          }}
-        />
-        {userOptions ? (
+
+        {/* {userOptions ? (
           <div className="absolute cursor-pointer  border-red-400 mt-11 w-[100%]  bg-blue-400 text-2xl justify-start  flex flex-col ">
             <div className="mt-2">Profile</div>
             <div
@@ -97,7 +101,28 @@ export const Header = () => {
           </div>
         ) : (
           ""
-        )}
+        )} */}
+        <Menu>
+          <MenuHandler>
+            <div>
+              <FaUser
+              // onClick={() => {
+              //   setUserOptions(!userOptions);
+              // }}
+              />
+            </div>
+          </MenuHandler>
+          <MenuList className=" text-sm w-[200px]">
+            <MenuItem className="text-xl">user profile</MenuItem>
+
+            <MenuItem
+              className="text-xl"
+              onClick={() => console.log("logout is clicked")}
+            >
+              Log Out
+            </MenuItem>
+          </MenuList>
+        </Menu>
         {settingsOptions ? (
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             {/* Overlay */}

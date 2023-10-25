@@ -30,7 +30,7 @@ export const Body = ({ clickHander }) => {
     };
   }, []);
   return (
-    <div className="sm:grid-cols-2   md:grid-cols-1 grid lg:grid-cols-2 lg:mt-56 lg:w-[80%] m-auto  mt-10  md:mt-10 md:text-center text-center lg:text-start md:w-[80%] w-[90%] gap-10 ">
+    <div className="sm:grid-cols-2   md:grid-cols-1 grid lg:grid-cols-2 lg:mt-56 lg:w-[70%] m-auto  mt-10  md:mt-10 md:text-center text-center lg:text-start md:w-[80%] w-[90%] gap-10 ">
       <div className=" flex-1">
         <div>
           <div className="text-5xl">
@@ -46,12 +46,12 @@ export const Body = ({ clickHander }) => {
           <Timer />
         </div>
         <div
-          className="grid md:grid-cols-[30%,70%] lg:grid-cols-[40%,60%]  mt-5 sm:grid-cols-2 justify-start"
+          className="grid md:grid-cols-[30%,70%] lg:grid-cols-[40%,60%]  mt-10 sm:grid-cols-2 justify-start"
           ref={divRef}
         >
           <div className="relative">
             <button
-              className="bg-blue-600 text-white px-6 py-3  rounded-md flex gap-3 "
+              className="bg-blue-600 text-white px-6 py-4  rounded-md flex gap-3 "
               onClick={() => {
                 setMeetingOptions(!meetingOptions);
               }}
